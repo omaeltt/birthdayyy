@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f7b733, #fc4a1a);
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.3em;
+    }
+
+    p {
+      font-size: 1.2em;
+    }
+
+    .cake {
+      font-size: 3em;
+      margin: 20px 0;
+    }
+
+    button {
+      background: white;
+      color: #fc4a1a;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1em;
+      border-radius: 30px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffecd2;
+    }
+
+    #surprise {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2em;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      border: 3px solid white;
+      object-fit: cover;
+      height: 120px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Happy Birthday, [Friend's Name]! 🎉</h1>
+    <div class="cake">🎂</div>
+    <p>Wishing you a day filled with love, laughter, and unforgettable memories.</p>
+    <button onclick="showSurprise()">Click for a Surprise 🎁</button>
+    <div id="surprise">🎈 You’re an amazing person and deserve all the happiness in the world! 🎈</div>
+
+    <h2 style="margin-top: 50px;">📸 Gallery of Memories</h2>
+    <div class="gallery">
+      <img src="images/memory1.jpg" alt="Memory 1">
+      <img src="images/memory2.jpg" alt="Memory 2">
+      <img src="images/memory3.jpg" alt="Memory 3">
+      <img src="images/memory4.jpg" alt="Memory 4">
+    </div>
+  </div>
+
+  <script>
+    function showSurprise() {
+      document.getElementById("surprise").style.display = "block";
+    }
+  </script>
+</body>
+</html>
