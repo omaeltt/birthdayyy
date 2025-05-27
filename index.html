@@ -145,6 +145,8 @@
     <h2 style="margin-top: 50px;">📸 Slideshow of Memories</h2>
     <div class="slideshow">
       <img id="slideImage" src="images/memory1.jpg" alt="Slideshow Image">
+      <p id="caption" style="color: #333; margin-top: 10px;">Your caption for image 1</p>
+
       <div>
         <button onclick="prevSlide()">⏮️ Previous</button>
         <button onclick="nextSlide()">Next ⏭️</button>
@@ -158,13 +160,44 @@
   <script>
     const imagePaths = Array.from({ length: 25 }, (_, i) => `images/memory${i + 1}.jpg`);
 
+    const imageCaptions = [
+      "Your caption for image 1",
+      "Memory from Jan 2024",
+      "At the beach 🌊",
+      "Laughing at that joke 😂",
+      "Picnic in the park",
+      "Birthday dinner 🎂",
+      "Trip to Japan 🇯🇵",
+      "Cafe moments ☕",
+      "Study session 📚",
+      "Random selfie 😄",
+      "Walk in the rain 🌧️",
+      "Celebrating small wins",
+      "Movie night 🎬",
+      "Road trip 🚗",
+      "Catching sunset 🌅",
+      "Matching outfits 👯",
+      "Museum date 🖼️",
+      "Hiking adventure 🥾",
+      "Starry night ✨",
+      "First try at painting 🎨",
+      "Cute animal moment 🐶",
+      "Graduation vibes 🎓",
+      "CNY celebrations 🧧",
+      "Us being weird 😂",
+      "Cheers to more memories 🥂"
+    ];
+
+
 
     let currentSlide = 0;
 
     function showSlide(index) {
       const img = document.getElementById("slideImage");
+      const caption = document.getElementById("caption");
       currentSlide = (index + imagePaths.length) % imagePaths.length;
       img.src = imagePaths[currentSlide];
+      caption.textContent = imageCaptions[currentSlide];
     }
 
     function nextSlide() {
