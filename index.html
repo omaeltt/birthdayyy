@@ -125,8 +125,8 @@
 
   <!-- Start Screen -->
   <div class="start-screen active" id="startScreen">
-    <h1>🎁 Ready for a Birthday Surprise?</h1>
-    <button onclick="revealMain()">Click for a Surprise 🎁</button>
+    <h1>🎁 ready for a birthday Surprise?</h1>
+    <button onclick="revealMain()">shake ass for surprise 🎁</button>
   </div>
 
   <!-- Main Content -->
@@ -136,7 +136,7 @@
       Your browser does not support the audio element.
     </audio>
 
-    <h1>🎉 Happy Birthday, Nad! 🎉</h1>
+    <h1>🎉 happy 21th birthday, nad!<3 🎉</h1>
     <div class="cake">🎂</div>
     <p>Wishing you a day filled with love, laughter, and unforgettable memories.</p>
     <button onclick="showSurprise()">Click for a Message 💌</button>
@@ -156,12 +156,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    const imagePaths = [
-      "images/memory1.jpg",
-      "images/memory2.jpg",
-      "images/memory3.jpg",
-      "images/memory4.jpg"
-    ];
+    const imagePaths = Array.from({ length: 25 }, (_, i) => `images/memory${i + 1}.jpg`);
+
 
     let currentSlide = 0;
 
