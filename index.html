@@ -23,13 +23,22 @@
     }
 
     .start-screen {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: #fc4a1a;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffdce0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fc4a1a;
+  transition: opacity 1s ease;
+  opacity: 1;
+}
+
 
     .start-screen button {
       background: white;
@@ -209,15 +218,24 @@
     }
 
     function revealMain() {
-      document.getElementById("startScreen").classList.remove("active");
-      document.getElementById("mainContent").classList.add("active");
+      const start = document.getElementById("startScreen");
+      const main = document.getElementById("mainContent");
+    
+      start.style.opacity = "0";
+    
+      setTimeout(() => {
+        start.style.display = "none";
+        main.classList.add("active");
+      }, 1000); // Wait for fade-out transition
+      
 
-      // Play background music
-      const music = document.getElementById("bgMusic");
-      music.play().catch(() => {
-        console.log("Audio playback may require user interaction.");
-      });
-    }
+  // Play background music
+  const music = document.getElementById("bgMusic");
+  music.play().catch(() => {
+    console.log("Audio playback may require user interaction.");
+  });
+}
+
 
     function showSurprise() {
       const el = document.getElementById("surprise");
