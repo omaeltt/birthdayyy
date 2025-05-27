@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,24 +9,59 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #f7b733, #fc4a1a);
-      color: white;
+      background: #ffdce0;
       text-align: center;
+    }
+
+    .start-screen, .container {
+      display: none;
+    }
+
+    .start-screen.active, .container.active {
+      display: block;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .start-screen {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fc4a1a;
+    }
+
+    .start-screen button {
+      background: white;
+      color: #fc4a1a;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .start-screen button:hover {
+      background: #ffe0e0;
     }
 
     .container {
       padding: 20px;
       max-width: 900px;
       margin: auto;
+      color: #fff;
     }
 
     h1 {
       font-size: 2.5em;
       margin-bottom: 0.3em;
+      color: #fc4a1a;
     }
 
     p {
       font-size: 1.2em;
+      color: #333;
     }
 
     .cake {
@@ -39,10 +73,10 @@
       background: white;
       color: #fc4a1a;
       border: none;
-      padding: 15px 30px;
+      padding: 10px 20px;
       font-size: 1em;
-      border-radius: 30px;
-      margin-top: 20px;
+      border-radius: 20px;
+      margin: 10px;
       cursor: pointer;
       transition: 0.3s ease;
     }
@@ -56,50 +90,125 @@
       margin-top: 20px;
       font-size: 1.2em;
       animation: fadeIn 1s ease-in-out;
+      color: #fc4a1a;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 10px;
+    .slideshow {
       margin-top: 40px;
     }
 
-    .gallery img {
+    .slideshow img {
       width: 100%;
+      max-width: 500px;
+      height: auto;
       border-radius: 10px;
       border: 3px solid white;
       object-fit: cover;
-      height: 120px;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    canvas {
+      position: fixed;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎉 happy birthday, nad! 🎉</h1>
+
+  <!-- Start Screen -->
+  <div class="start-screen active" id="startScreen">
+    <h1>🎁 Ready for a Birthday Surprise?</h1>
+    <button onclick="revealMain()">Click for a Surprise 🎁</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container" id="mainContent">
+    <audio id="bgMusic" loop>
+      <source src="your-music.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <h1>🎉 Happy Birthday, Nad! 🎉</h1>
     <div class="cake">🎂</div>
     <p>Wishing you a day filled with love, laughter, and unforgettable memories.</p>
-    <button onclick="showSurprise()">Click for a Surprise 🎁</button>
+    <button onclick="showSurprise()">Click for a Message 💌</button>
     <div id="surprise">🎈 You’re an amazing person and deserve all the happiness in the world! 🎈</div>
 
-    <h2 style="margin-top: 50px;">📸 Gallery of Memories</h2>
-    <div class="gallery">
-      <img src="images/memory1.jpg" alt="Memory 1">
-      <img src="images/memory2.jpg" alt="Memory 2">
-      <img src="images/memory3.jpg" alt="Memory 3">
-      <img src="images/memory4.jpg" alt="Memory 4">
+    <h2 style="margin-top: 50px;">📸 Slideshow of Memories</h2>
+    <div class="slideshow">
+      <img id="slideImage" src="images/memory1.jpg" alt="Slideshow Image">
+      <div>
+        <button onclick="prevSlide()">⏮️ Previous</button>
+        <button onclick="nextSlide()">Next ⏭️</button>
+      </div>
     </div>
   </div>
 
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    function showSurprise() {
-      document.getElementById("surprise").style.display = "block";
+    const imagePaths = [
+      "images/memory1.jpg",
+      "images/memory2.jpg",
+      "images/memory3.jpg",
+      "images/memory4.jpg"
+    ];
+
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      const img = document.getElementById("slideImage");
+      currentSlide = (index + imagePaths.length) % imagePaths.length;
+      img.src = imagePaths[currentSlide];
     }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function revealMain() {
+      document.getElementById("startScreen").classList.remove("active");
+      document.getElementById("mainContent").classList.add("active");
+
+      // Play background music
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {
+        console.log("Audio playback may require user interaction.");
+      });
+    }
+
+    function showSurprise() {
+      const el = document.getElementById("surprise");
+      el.style.display = "block";
+      el.style.animation = "none";
+      el.offsetHeight;
+      el.style.animation = "fadeIn 1s ease-in-out";
+
+      // Launch confetti
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 },
+      });
+    }
+
+    // Initialize first slide
+    document.addEventListener("DOMContentLoaded", () => {
+      showSlide(currentSlide);
+    });
   </script>
 </body>
 </html>
