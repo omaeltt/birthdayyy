@@ -23,7 +23,7 @@
     }
 
     .start-screen {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100vw;
@@ -35,6 +35,7 @@
   justify-content: center;
   flex-direction: column;
   color: #fc4a1a;
+    overflow: hidden;
   transition: opacity 1s ease;
   opacity: 1;
 }
@@ -138,19 +139,7 @@
   z-index:5;
 }
 
-.balloon-left {
-  top: 80px;
-  left: 30px;
-  width:60px;
-}
 
-.balloon-right {
-  top: 80px;
-  right: 25px;
-  width: 200px;
-  transform: scaleX(-1); /* flip horizontally for symmetry */
-  
-}
 .balloon-one {
   top: 180px;
   left: 180px;
@@ -160,11 +149,6 @@
   bottom: 5px;
   right: 100px;
   width:120px;
-}
-    .balloon-three {
-  bottom: 5px;
-  left: 5px;
-  width:160px;
 }
     .balloon-four {
   top: 240px;
@@ -191,28 +175,59 @@
   right: 30px;
   width:90px;
 }
-    .balloon-nine {
-  bottom: 5px;
-  right: 5px;
-  width:200px;
+    .corner-img {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  z-index: 5;
+  opacity: 0.8;
 }
+
+/* Corners */
+.top-left {
+  top: 10px;
+  left: 10px;
+}
+
+.top-right {
+  top: 10px;
+  right: 10px;
+}
+
+.bottom-left {
+  bottom: 10px;
+  left: 10px;
+}
+
+.bottom-right {
+  bottom: 10px;
+  right: 10px;
+}
+    @media (max-width: 480px) {
+  .corner-img {
+    width: 40px;
+  }
+}
+
+
+
   </style>
 </head>
 <body>
 
   <!-- Start Screen -->
   <div class="start-screen active" id="startScreen">
-    <img src="images/character1.png" alt="Balloon" class="decor balloon-left">
-    <img src="images/character2.png" alt="Balloon" class="decor balloon-right">
+    <img src="images/character1.png" alt="Balloon" class="corner-img top-left">
+    <img src="images/character2.png" alt="Balloon" class="corner-img top-right">
     <img src="images/character3.png" alt="Balloon" class="decor balloon-one">
     <img src="images/character4.png" alt="Balloon" class="decor balloon-two">
-    <img src="images/character5.png" alt="Balloon" class="decor balloon-three">
+    <img src="images/character5.png" alt="Balloon" class="corner-img bottom-left">
     <img src="images/character6.png" alt="Balloon" class="decor balloon-four">
     <img src="images/character7.png" alt="Balloon" class="decor balloon-five">
     <img src="images/character8.png" alt="Balloon" class="decor balloon-six">
     <img src="images/character9.png" alt="Balloon" class="decor balloon-seven">
     <img src="images/character10.png" alt="Balloon" class="decor balloon-eight">
-    <img src="images/character11.png" alt="Balloon" class="decor balloon-nine">
+    <img src="images/character11.png" alt="Balloon" class=" corner-img bottom-right">
     <h1>🎁 ready for a birthday Surprise?</h1>
     <button onclick="revealMain()">shake ass 🎁</button>
   </div>
