@@ -226,10 +226,6 @@
   50% { border-color: #fc4a1a; }
 }
 
-
-
-
-
 @keyframes slideUpFadeOut {
   to {
     opacity: 0;
@@ -289,7 +285,7 @@
     <button onclick="showSurprise()">Click for a Message 💌</button>
     <div id="surprise">
       🎈 you're 21!!!!!! 🎈
-      <p id="letterMessage" class="typing">bello nad, i hope that you like this little website i made. took me many hours and crash outs to create this. also many scrolling of your reposts on tiktok to find all ur man... I know i cant celebrate ur 21 this year in person but i prolly in uk living my life and hope you have so much fun on the day.</p>
+      <p id="letterMessage" class="typing"></p>
     </div>
 
     <h2 style="margin-top: 50px;">📸 memories of uuu</h2>
@@ -305,7 +301,10 @@
   </div>
 
   <canvas id="confetti-canvas"></canvas>
-<script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
   const message = "Dear Nad,\n\nHappy 21st Birthday! 🎉\nYou are loved, cherished, and amazing.\nHere’s to many more years of joy, growth, and memories.\n\nWith love,\nLoong Yee Qian";
   let index = 0;
   const speed = 50;
@@ -326,8 +325,6 @@
   }
 </script>
 
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     const imagePaths = Array.from({ length: 15 }, (_, i) => `images/memory${i + 1}.JPEG`);
 
