@@ -45,8 +45,8 @@
       background: white;
       color: #fc4a1a;
       border: none;
-      padding: 15px 30px;
-      font-size: 1.2em;
+      padding: 12px 20px;
+      font-size: 1em;
       border-radius: 30px;
       cursor: pointer;
       transition: 0.3s ease;
@@ -203,10 +203,45 @@
   bottom: 10px;
   right: 10px;
 }
-    @media (max-width: 480px) {
+  @media (max-width: 480px) {
   .corner-img {
     width: 40px;
   }
+}
+@media (max-width: 600px) {
+  .start-screen {
+    height: auto;
+    padding: 40px 10px;
+  }
+
+  .start-screen h1 {
+    font-size: 1.8em;
+    margin-top: 20px;
+  }
+
+  .start-screen button {
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+
+  .decor, .corner-img {
+    max-width: 60px;
+  }
+}
+
+@keyframes slideUpFadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.start-screen.fade-out {
+  animation: slideUpFadeOut 1s forwards;
+}
+.decor, .corner-img {
+  width: 15vw;
+  max-width: 80px;
 }
 
 
@@ -329,6 +364,23 @@
     console.log("Audio playback may require user interaction.");
   });
 }
+    function revealMain() {
+  const start = document.getElementById("startScreen");
+  const main = document.getElementById("mainContent");
+
+  start.classList.add("fade-out");
+
+  setTimeout(() => {
+    start.style.display = "none";
+    main.classList.add("active");
+  }, 1000);
+
+  const music = document.getElementById("bgMusic");
+  music.play().catch(() => {
+    console.log("Audio playback may require user interaction.");
+  });
+}
+
 
 
     function showSurprise() {
