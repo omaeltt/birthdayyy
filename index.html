@@ -141,9 +141,9 @@
 
 
 .balloon-one {
-  bottom: 10px;
+  bottom: 30px;
   right: 65%;
-  width: 200px;
+  width: 300px;
 }
   .balloon-two {
   bottom: 20px;
@@ -207,6 +207,24 @@
   right: 0%;
   width: 250px;
 }
+  .typing {
+  font-size: 1.2em;
+  color: #fc4a1a;
+  white-space: pre-wrap;
+  border-right: 2px solid #fc4a1a;
+  margin-top: 20px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #fc4a1a; }
+}
+
+
 
 
 
@@ -263,10 +281,14 @@
     </audio>
 
     <h1>happy 21th birthday, nad!<3 🎂</h1>
+    
     <!--<div class="cake">🎂</div>-->
     <p>Wishing you a day filled with love, laughter, and unforgettable memories.</p>
     <button onclick="showSurprise()">Click for a Message 💌</button>
-    <div id="surprise">🎈 you're 21!!!!!! 🎈</div>
+    <div id="surprise">
+      🎈 you're 21!!!!!! 🎈
+      <p id="letterMessage" class="typing"></p>
+    </div>
 
     <h2 style="margin-top: 50px;">📸 memories of uuu</h2>
     <div class="slideshow">
@@ -281,6 +303,27 @@
   </div>
 
   <canvas id="confetti-canvas"></canvas>
+<script>
+  const message = "Dear Nad,\n\nHappy 21st Birthday! 🎉\nYou are loved, cherished, and amazing.\nHere’s to many more years of joy, growth, and memories.\n\nWith love,\nLoong Yee Qian";
+  let index = 0;
+  const speed = 50;
+
+  function typeLetterByLetter() {
+    const letterContainer = document.getElementById("letterMessage");
+    if (index < message.length) {
+      letterContainer.textContent += message.charAt(index);
+      index++;
+      setTimeout(typeLetterByLetter, speed);
+    }
+  }
+
+  function showSurprise() {
+    const surprise = document.getElementById("surprise");
+    surprise.style.display = "block";
+    typeLetterByLetter();
+  }
+</script>
+
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
