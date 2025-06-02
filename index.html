@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday!</title>
+  <title>for nad 🎂</title>
   <style>
     body {
       margin: 0;
@@ -209,7 +209,7 @@
   right: 0%;
   width: 250px;
 }
-  .typing {
+.typing {
   font-size: 1.2em;
   color: #fc4a1a;
   white-space: pre-wrap;
@@ -319,10 +319,27 @@
   }
 
   function showSurprise() {
-    const surprise = document.getElementById("surprise");
-    surprise.style.display = "block";
-    typeLetterByLetter();
-  }
+  const el = document.getElementById("surprise");
+  const letterContainer = document.getElementById("letterMessage");
+
+  el.style.display = "block";
+  el.style.animation = "none";
+  el.offsetHeight; // force reflow to restart animation
+  el.style.animation = "fadeIn 1s ease-in-out";
+
+  // Reset and type the message
+  index = 0;
+  letterContainer.textContent = "";
+  typeLetterByLetter();
+
+  // Launch confetti
+  confetti({
+    particleCount: 200,
+    spread: 100,
+    origin: { y: 0.6 },
+  });
+}
+
 </script>
 
   <script>
@@ -413,20 +430,7 @@
 
 
 
-    function showSurprise() {
-      const el = document.getElementById("surprise");
-      el.style.display = "block";
-      el.style.animation = "none";
-      el.offsetHeight;
-      el.style.animation = "fadeIn 1s ease-in-out";
-
-      // Launch confetti
-      confetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.6 },
-      });
-    }
+   
 
     // Initialize first slide
     document.addEventListener("DOMContentLoaded", () => {
