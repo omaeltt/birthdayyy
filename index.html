@@ -420,23 +420,22 @@
     }
 
     function revealMain() {
-      const start = document.getElementById("startScreen");
-      const main = document.getElementById("mainContent");
-    
-      start.style.opacity = "0";
-    
-      setTimeout(() => {
-        start.style.display = "none";
-        main.classList.add("active");
-      }, 1000); // Wait for fade-out transition
-      
+  const start = document.getElementById("startScreen");
+  const main = document.getElementById("mainContent");
 
-  // Play background music
+  start.classList.add("fade-out");
+
+  setTimeout(() => {
+    start.style.display = "none";
+    main.classList.add("active");
+  }, 1000);
+
   const music = document.getElementById("bgMusic");
   music.play().catch(() => {
     console.log("Audio playback may require user interaction.");
   });
 }
+
 
    
 
